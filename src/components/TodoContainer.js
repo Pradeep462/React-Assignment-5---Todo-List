@@ -27,11 +27,33 @@ const TodoConatainer = () => {
         setTodos(filtered_arr);
     }
 
+    const startEditing = todo_id =>{
+        const editing_arr = todos.map((item) => {
+            if(item.id == todo_id){
+                item.isEditing = true;
+            }
+            return item;
+        });
+
+        setTodos(editing_arr);
+    }
+
+    const finishEditing = todo =>{
+        const editing_arr = todos.map((item) => {
+            if(item.id == todo.id){
+              return todo;
+            }
+            return item;
+        });
+
+        setTodos(editing_arr);
+    }
+
     return (
         <div>
             <h3>Todo App</h3>
             <TodoAdd addTodo={addTodo} />
-            <TodoList todos={todos} deleteTodo={deleteTodo}/>
+            <TodoList todos={todos} deleteTodo={deleteTodo} startEditing={startEditing} finishEditing={finishEditing}/>
         </div>
     );
 };

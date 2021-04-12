@@ -3,7 +3,12 @@ import React from 'react';
 const TodoAdd = (props) => {
     let TodoValue = "";
     const submitTodo = () => {
-           props.addTodo(TodoValue);
+        if(TodoValue.trim()){
+           props.addTodo(TodoValue.trim());
+           TodoValue = "";
+           document.getElementById("task").value = "";
+        }
+           
     }
     const updateTodoValue = e => {
         TodoValue = e.target.value;
@@ -16,7 +21,7 @@ const TodoAdd = (props) => {
             
             <textarea id="task" onChange={updateTodoValue}> </textarea>
             <br/>
-            <button onClick={submitTodo}>Add New</button>
+            <button id ="btn" onClick={submitTodo}>Add New</button>
         </div>
     );
 };
